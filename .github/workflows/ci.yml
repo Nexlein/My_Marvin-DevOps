@@ -1,0 +1,32 @@
+name: Epitech Mirror
+
+# Workflow triggers
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  # --- MIRROR TO EPITECH ---
+  mirror_to_epitech:
+    runs-on: ubuntu-latest
+
+    if: github.repository == 'Nexlein/My_Marvin-DevOps' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Push to Epitech Mirror
+        run: |
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git remote add epitechMy_Marvin git@github.com:EpitechPGE2-2025/G-DOP-400-MPL-4-1-mymarvin-2.git
+          git push epitechMy_Marvin --mirror
