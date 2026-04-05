@@ -1,0 +1,77 @@
+jenkins:
+  systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance"
+
+# --- Users Configuration ---
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "chocolateen"
+          password: "${USER_CHOCOLATEEN_PASSWORD}"
+          name: "Hugo"
+        - id: "vaugie_g"
+          password: "${USER_VAUGIE_G_PASSWORD}"
+          name: "Garance"
+        - id: "i_dont_know"
+          password: "${USER_I_DONT_KNOW_PASSWORD}"
+          name: "Jeremy"
+        - id: "nasso"
+          password: "${USER_NASSO_PASSWORD}"  
+          name: "Nassim"
+
+# --- Roles Configuration ---
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+        # --- Administrators ---
+          - name: "admin"
+            description: "Marvin master"
+            permissions:
+              - "Overall/Administer"
+            entries:
+              - user: "chocolateen"
+
+        # --- Ape Users ---
+          - name: "ape"
+            description: "Pedagogical team member"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Job/Build"
+              - "Job/Workspace"
+            entries:
+              - user: "i_dont_know"
+        
+        # --- Gorilla Users ---
+          - name: "gorilla"
+            description: "Group Obsessively Researching Innovation Linked to Learning and Accomplishment"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Job/Build"
+              - "Job/Workspace"
+              - "Job/Create"
+              - "Job/Configure"
+              - "Job/Delete"
+              - "Job/Move"
+              - "Job/Cancel"
+            entries:
+              - user: "vaugie_g"
+          
+        # --- Assistant Users ---
+          - name: "assist"
+            description: "Assistant"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Job/Workspace"
+            entries:
+              - user: "nasso"
+
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+
+jobs:
+  - file: /var/jenkins_home/job_dsl.groovy
