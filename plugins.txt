@@ -1,0 +1,10 @@
+configuration-as-code
+role-strategy
+job-dsl
+git
+workflow-aggregator
+matrix-auth
+cloudbees-folder
+structs
+ws-cleanup
+github
