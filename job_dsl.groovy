@@ -33,7 +33,7 @@ final String jobTemplate = '''
         steps {
             shell('make fclean')
             shell('make')
-            shell('make tests_run || true')
+            shell('make tests_run')
             shell('make clean')
         }
     }

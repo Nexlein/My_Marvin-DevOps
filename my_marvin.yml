@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance"
+  systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance."
 
 # --- Users Configuration ---
   securityRealm:
