@@ -16,7 +16,7 @@ jenkins:
           password: "${USER_I_DONT_KNOW_PASSWORD}"
           name: "Jeremy"
         - id: "nasso"
-          password: "${USER_NASSO_PASSWORD}"  
+          password: "${USER_NASSO_PASSWORD}"
           name: "Nassim"
 
 # --- Roles Configuration ---
