@@ -69,6 +69,18 @@ jenkins:
             entries:
               - user: "nasso"
 
+# --- Credentials Configuration ---
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "github-auth"
+              username: "git"
+              password: "${GITHUB_TOKEN}"
+              description: "GitHub Token for private repositories"
+
 security:
   globalJobDslSecurityConfiguration:
     useScriptSecurity: false

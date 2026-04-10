@@ -12,6 +12,7 @@ services:
       - USER_VAUGIE_G_PASSWORD=${USER_VAUGIE_G_PASSWORD}
       - USER_I_DONT_KNOW_PASSWORD=${USER_I_DONT_KNOW_PASSWORD}
       - USER_NASSO_PASSWORD=${USER_NASSO_PASSWORD}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
       - jenkins_data:/var/jenkins_home
       - ./my_marvin.yml:/var/jenkins_home/my_marvin.yml:ro
