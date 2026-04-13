@@ -7,9 +7,6 @@ USER root
 RUN apt-get update && apt-get install -y \
     make \
     build-essential \
-    cmake \
-    pkg-config \
-    libcriterion-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
