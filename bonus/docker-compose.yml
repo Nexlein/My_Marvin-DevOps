@@ -1,0 +1,20 @@
+services:
+  jenkins-bonus:
+    build:
+      context: ..
+      dockerfile: bonus/Dockerfile
+      network: host
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    environment:
+      - USER_BONUS_PASSWORD=${USER_BONUS_PASSWORD}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    volumes:
+      - jenkins_bonus_data:/var/jenkins_home
+      - ./myMarvinBonus.yml:/var/jenkins_home/my_marvin.yml:ro
+      - ./privateJob_dsl.groovy:/var/jenkins_home/privateJob_dsl.groovy:ro
+
+volumes:
+  jenkins_bonus_data:
