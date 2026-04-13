@@ -17,6 +17,7 @@ services:
       - jenkins_data:/var/jenkins_home
       - ./my_marvin.yml:/var/jenkins_home/my_marvin.yml:ro
       - ./job_dsl.groovy:/var/jenkins_home/job_dsl.groovy:ro
+      - ./bonus/privateJob_dsl.groovy:/var/jenkins_home/privateJob_dsl.groovy:ro
 
 volumes:
   jenkins_data:
