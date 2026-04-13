@@ -1,7 +1,7 @@
 jenkins:
   systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance."
 
-# --- Users Configuration ---
+  # --- Users Configuration ---
   securityRealm:
     local:
       allowsSignup: false
@@ -19,12 +19,12 @@ jenkins:
           password: "${USER_NASSO_PASSWORD}"
           name: "Nassim"
 
-# --- Roles Configuration ---
+  # --- Roles Configuration ---
   authorizationStrategy:
     roleBased:
       roles:
         global:
-        # --- Administrators ---
+          # --- Administrators ---
           - name: "admin"
             description: "Marvin master"
             permissions:
@@ -32,7 +32,7 @@ jenkins:
             entries:
               - user: "chocolateen"
 
-        # --- Ape Users ---
+          # --- Ape Users ---
           - name: "ape"
             description: "Pedagogical team member"
             permissions:
@@ -42,8 +42,8 @@ jenkins:
               - "Job/Workspace"
             entries:
               - user: "i_dont_know"
-        
-        # --- Gorilla Users ---
+
+          # --- Gorilla Users ---
           - name: "gorilla"
             description: "Group Obsessively Researching Innovation Linked to Learning and Accomplishment"
             permissions:
@@ -58,8 +58,8 @@ jenkins:
               - "Job/Cancel"
             entries:
               - user: "vaugie_g"
-          
-        # --- Assistant Users ---
+
+          # --- Assistant Users ---
           - name: "assist"
             description: "Assistant"
             permissions:
@@ -87,4 +87,3 @@ security:
 
 jobs:
   - file: /var/jenkins_home/job_dsl.groovy
-  - file: /var/jenkins_home/privateJob_dsl.groovy

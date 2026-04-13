@@ -1,0 +1,43 @@
+jenkins:
+  systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance (Bonus)."
+
+  # --- Users Configuration ---
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "bonus"
+          password: "${USER_BONUS_PASSWORD}"
+          name: "bonus"
+
+  # --- Roles Configuration ---
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          # --- Administrators ---
+          - name: "bonus"
+            description: "bonus"
+            permissions:
+              - "Overall/Administer"
+            entries:
+              - user: "bonus"
+
+# --- Credentials Configuration ---
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "github-auth"
+              username: "git"
+              password: "${GITHUB_TOKEN}"
+              description: "GitHub Token for private repositories"
+
+security:
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+
+jobs:
+  - file: /var/jenkins_home/privateJob_dsl.groovy
