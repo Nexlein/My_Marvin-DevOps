@@ -35,7 +35,32 @@ final String privateJobTemplate = '''
             preBuildCleanup()
         }
         steps {
-            shell('if [ -f Makefile ]; then make fclean; make; make tests_run; make clean; elif [ -f CMakeLists.txt ]; then cmake -B build && cmake --build build && ctest --test-dir build; else echo "No build files found" && exit 1; fi')
+            shell(\'\'\'
+                if [ -f Makefile ]; then 
+                    make fclean
+                    make
+                    make tests_run
+                    make clean
+                    gcovr --exclude tests/ --xml-pretty -o coverage.xml
+                elif [ -f CMakeLists.txt ]; then 
+                    cmake -B build 
+                    cmake --build build 
+                    ctest --test-dir build
+                    gcovr --exclude tests/ --xml-pretty -o coverage.xml
+                else 
+                    echo "No build files found" && exit 1
+                fi
+            \'\'\'.stripIndent())
+        }
+        publishers {
+            recordCoverage {
+                tools {
+                    coverageTool {
+                        parser('COBERTURA')
+                        pattern('coverage.xml')
+                    }
+                }
+            }
         }
     }
 '''.stripIndent()

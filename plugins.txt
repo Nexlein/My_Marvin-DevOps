@@ -8,3 +8,4 @@ cloudbees-folder
 structs
 ws-cleanup
 github
+code-coverage-api:latest

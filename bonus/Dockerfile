@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     pkg-config \
     libcriterion-dev \
+    gcovr \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
